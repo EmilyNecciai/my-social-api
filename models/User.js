@@ -18,12 +18,12 @@ const UserSchema = new Schema(
         "This is not a valid email. Please enter a valid email address!",
       ],
     },
-    // thoughts: {
-    //   type: Schema.Types.ObjectId,
-    //   required: false,
-    //   ref: "Thought",
-    // },
-    // friends: [ ],
+    thoughts: {
+      type: Schema.Types.ObjectId,
+      required: false,
+      ref: "Thought",
+    },
+    friends: [ this ],
   },
   {
     toJSON: {
@@ -33,13 +33,10 @@ const UserSchema = new Schema(
   }
 );
 
-// UserSchema.virtual("friendCount").get(function () {
-//     return this.friends.reduce(
-//       (total, friend) => total + friend.replies.length + 1,
-//       0
-//     );
-//   });
-  
+UserSchema.virtual("friendCount").get(function () {
+    return this.friends.length;
+  });
+    
 
 
 const User = model("User", UserSchema);
