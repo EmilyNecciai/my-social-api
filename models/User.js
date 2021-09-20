@@ -1,10 +1,8 @@
-const { Schema, model, Types } = require("mongoose");
+const { Schema, model, } = require("mongoose");
 const { isEmail } = require("validator");
-const dateFormat = require("../utils/dateFormat");
 
 const UserSchema = new Schema(
   {
-    // set custom id to avoid confusion with parent comment _id
     username: {
       type: String,
       required: true,
@@ -20,27 +18,27 @@ const UserSchema = new Schema(
         "This is not a valid email. Please enter a valid email address!",
       ],
     },
-    thoughts: {
-      type: Schema.Types.ObjectId,
-      ref: "Thought",
-    },
-    friends: [this],
+    // thoughts: {
+    //   type: Schema.Types.ObjectId,
+    //   required: false,
+    //   ref: "Thought",
+    // },
+    // friends: [ ],
   },
   {
     toJSON: {
       virtuals: true,
       getters: true,
     },
-    id: false,
   }
 );
 
-UserSchema.virtual("friendCount").get(function () {
-    return this.friends.reduce(
-      (total, friend) => total + friend.replies.length + 1,
-      0
-    );
-  });
+// UserSchema.virtual("friendCount").get(function () {
+//     return this.friends.reduce(
+//       (total, friend) => total + friend.replies.length + 1,
+//       0
+//     );
+//   });
   
 
 

@@ -1,7 +1,10 @@
-// Require & import api routes, express, and router
+const router = require('express').Router();
+const apiRoutes = require('./api');
 
-// router.use /api apiRoutes
+router.use('/api', apiRoutes);
 
-// router.use 404 error
+router.use((req, res) => {
+  res.status(404).send('404');
+});
 
-// export router
+module.exports = router;
