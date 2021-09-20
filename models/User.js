@@ -24,12 +24,7 @@ const UserSchema = new Schema(
       required: false,
       ref: "Thought",
     },
-    friends: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    friends: [ this ],
   },
   {
     toJSON: {
