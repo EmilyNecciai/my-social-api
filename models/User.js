@@ -1,6 +1,8 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 // Found this ^^ isEmail and validator package from a stack overflow post, I think? I forgot to write it down.
+
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
@@ -19,11 +21,13 @@ const UserSchema = new Schema(
         "This is not a valid email. Please enter a valid email address!",
       ],
     },
-    thoughts: {
-      type: Schema.Types.ObjectId,
-      ref: "Thought",
-    },
-    friends: [ this ],
+    thoughts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Thought",
+      },
+    ],
+    friends: [this],
   },
   {
     toJSON: {
@@ -36,6 +40,6 @@ UserSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-const User = model("User", UserSchema);
+const User = mongoose.model("User", UserSchema);
 
 module.exports = User;
