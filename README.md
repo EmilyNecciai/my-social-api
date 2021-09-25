@@ -45,6 +45,8 @@ To use this repo, go to the cloned files, then type `npm start` in your command-
 
 To contribute to this project, fork the repo, make some edits in a new branch, then submit a PR. It’ll be merged to our main branch upon testing and approval.
 
+> Please note that in `\models\Thought.js` I referenced lines 49 and 50 from `https://github.com/SBerkebile7/C18-Social-Network-API/blob/main/models/Thought.js` because I genuinely wasn't sure if I needed to do something self referening. Apparently not, which is fine so I'm only noting this here as a precaution, but if anyone has any suggestions on how to validate that the username matches the _id of the user, let me know. 
+
 ## Testing
 
 I recommend using Insomnia or Postman to test. 
