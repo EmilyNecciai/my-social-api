@@ -23,17 +23,17 @@ router
 router
     .route("/:thoughtId")
     .get(getThoughtById)    
-    .get(updateThought)
+    .put(updateThought)
     .delete(removeThought);
 
 
 router
     .route("/:userId/:thoughtId")
-    .put(addReaction);
+    .post(addReaction);
 
 
 router
-    .route('/:userId/:thoughtId/:reactionId')
+    .route('/:thoughtId/:reactionId')
     .delete(removeReaction);
 
 module.exports = router;
